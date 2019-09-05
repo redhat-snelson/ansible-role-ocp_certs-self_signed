@@ -14,7 +14,8 @@
     dest: "{{ system_cert_location }}{{ system_cert_filename }}"
 
 - name: Import Self-Signed Cert (System)
-  shell: "update-ca-trust"
+  command: "update-ca-trust"
+  changed_when: true
 
 - name: Create certs.d location (Docker)
   file:

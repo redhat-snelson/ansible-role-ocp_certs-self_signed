@@ -6,6 +6,8 @@
   run_once: true
   register: ss_cert
   when: "ansible_version.full is version_compare('2.8', '<')"
+  tags:
+    - skip_ansible_lint
 
 - debug:
     msg: "{{ ss_cert.stdout }}"
