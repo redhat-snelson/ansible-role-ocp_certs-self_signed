@@ -1,0 +1,28 @@
+---
+# tasks file for roles/snelson_redhat.ocp_certs.self_signed
+- name: Download Cert (Ansible 2.8.0)
+  when: "ansible_version.full is version_compare('2.8', '>=')"
+  import_tasks: get_certificate.yaml
+
+- name: Download Cert (Ansible 2.7.0)
+  when: "ansible_version.full is version_compare('2.8', '<')"
+  import_tasks: openssl_client.yaml
+
+- name: Copy Self-Signed Cert for import (System)
+  copy:
+    content: "{{ ss_cert_text }}"
+    dest: "{{ system_cert_location }}{{ system_cert_filename }}"
+
+- name: Import Self-Signed Cert (System)
+  shell: "update-ca-trust"
+
+- name: Create certs.d location (Docker)
+  file:
+    path: "{{ docker_cert_location }}"
+    state: directory
+
+- name: Copy Self-Signed Cert for import (Docker)
+  copy:
+    content: "{{ ss_cert_text }}"
+    dest: "{{ docker_cert_location }}{{ docker_cert_filename }}"
+

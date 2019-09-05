@@ -1,0 +1,10 @@
+---
+# defaults file for roles/snelson_redhat.ocp_certs.self_signed
+cert_remote_host: ""
+cert_remote_port: 443
+cert_file_temp_location: "/tmp/ca.pem"
+system_cert_location: "/etc/pki/ca-trust/source/anchors/"
+system_cert_filename: "{{ cert_remote_host }}.crt"
+docker_cert_location: "/etc/docker/certs.d/{{ cert_remote_host }}/"
+docker_cert_filename: "ca.crt"
+

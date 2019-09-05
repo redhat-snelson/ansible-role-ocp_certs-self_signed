@@ -1,0 +1,20 @@
+---
+# tasks file for roles/snelson_redhat.ocp_certs.self_signed
+- name: Get Self-Signed Cert  (Ansible 2.7.0)
+  shell: echo -n | openssl s_client -connect {{ cert_remote_host }}:{{ cert_remote_port }} | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p'
+  delegate_to: localhost
+  run_once: true
+  register: ss_cert
+  when: "ansible_version.full is version_compare('2.8', '<')"
+
+- debug:
+    msg: "{{ ss_cert.stdout }}"
+
+- name: Save Self-Signed Cert Text (Ansible 2.7.0)
+  set_fact:
+      ss_cert_text: "{{ ss_cert.stdout }}"
+  when: "ansible_version.full is version_compare('2.8', '<')"
+
+- debug:
+    msg: "{{ ss_cert_text }}"
+
