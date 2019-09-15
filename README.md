@@ -31,14 +31,12 @@ None
 
 ## Example Playbook
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: OSEv3
-      roles:
-         - role: snelson_redhat.ocp_certs.self_signed
-           vars:
-             - cert_remote_host: "registry.gitlab.example.com"
-             - cert_remote_port: 5000
+- hosts: OSEv3
+  roles:
+     - role: snelson_redhat.ocp_certs.self_signed
+       vars:
+         - cert_remote_host: "registry.gitlab.example.com"
+         - cert_remote_port: 5000
 
 ## License
 
