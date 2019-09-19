@@ -13,5 +13,4 @@
 
 - name: Save Self-Signed Cert Text (Ansible 2.8.0)
   set_fact:
-      ss_cert_text: "{{ ss_cert.cert }}"
-
+    ss_cert_text: "{{ ss_cert.cert }}"

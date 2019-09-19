@@ -11,6 +11,5 @@
 
 - name: Save Self-Signed Cert Text (Ansible 2.7.0)
   set_fact:
-      ss_cert_text: "{{ ss_cert.stdout }}"
+    ss_cert_text: "{{ ss_cert.stdout }}"
   when: "ansible_version.full is version_compare('2.8', '<')"
-

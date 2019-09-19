@@ -26,4 +26,3 @@
   copy:
     content: "{{ ss_cert_text }}"
     dest: "{{ docker_cert_location }}{{ docker_cert_filename }}"
-
